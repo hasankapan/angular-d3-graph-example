@@ -2,11 +2,12 @@ import { EventEmitter } from '@angular/core';
 import { Link } from './link';
 import { Node } from './node';
 import * as d3 from 'd3';
+import { Element } from '../namespaces/element.namespace';
 
 const FORCES = {
-  LINKS: 1 / 50,
-  COLLISION: 1,
-  CHARGE: -1
+  LINKS: 0,
+  COLLISION: 2,
+  CHARGE: 1/1000
 }
 
 export class ForceDirectedGraph {
@@ -24,13 +25,17 @@ export class ForceDirectedGraph {
   }
 
   connectNodes(source, target) {
-    let link;
+    let link:Link;
 
     if (!this.nodes[source] || !this.nodes[target]) {
       throw new Error('One of the nodes does not exist');
     }
+    let linkConfiguration:Element.Link.Configuration = new Element.Link.Configuration();
+    linkConfiguration.visible = true;
+    linkConfiguration.type = Element.Link.Types.WORK;
 
-    link = new Link(source, target);
+    link = new Link(source, target, linkConfiguration);
+
     this.simulation.stop();
     this.links.push(link);
     this.simulation.alphaTarget(0.3).restart();

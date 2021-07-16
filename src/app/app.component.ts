@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import APP_CONFIG from './app.config';
 import { Node, Link } from './d3';
+import { Element } from './d3/namespaces/element.namespace';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,11 @@ export class AppComponent {
         this.nodes[getIndex(i * m)].linkCount++;
 
         /** connecting the nodes before starting the simulation */
-        this.links.push(new Link(i, i * m));
+        let linkConfiguration:Element.Link.Configuration = new Element.Link.Configuration();
+        linkConfiguration.visible = true;
+        linkConfiguration.type = Element.Link.Types.WORK;
+
+        this.links.push(new Link(i, i * m, linkConfiguration));
       }
     }
   }

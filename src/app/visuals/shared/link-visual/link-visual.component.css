@@ -1,4 +1,15 @@
-.link {
-    stroke-width: 0.25;
-    stroke: rgb(222,237,250);
+
+.WORK{
+    stroke-width: 10;
+    stroke: rgba(138, 202, 162, 0.205);
+}
+
+.PROTECTED{
+    stroke-width: 10;
+    stroke: rgba(138, 173, 202, 0.205);
+}
+
+.ALARM {
+    stroke-width: 10;
+    stroke: rgba(138, 173, 202, 0.205);
 }
